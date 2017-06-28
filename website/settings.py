@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -32,6 +33,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -47,6 +49,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -62,6 +66,9 @@ DATABASES = {
     }
 }
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+#SOCIAL_AUTH_COMPLETE_URL_NAME = 'social:complete' 
+#SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'social:association_complete'
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -77,7 +84,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
 
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_GITHUB_KEY = '0e1046311c20297beaa6'
+SOCIAL_AUTH_GITHUB_SECRET = 'b7ebe0a95e4638a1a1a094a3cbea8d5a1cdd1ba1'
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

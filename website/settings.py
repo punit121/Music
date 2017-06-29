@@ -1,4 +1,5 @@
 import os
+#from config import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -89,6 +90,7 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
 
@@ -96,6 +98,10 @@ AUTHENTICATION_BACKENDS = (
 )
 SOCIAL_AUTH_GITHUB_KEY = '0e1046311c20297beaa6'
 SOCIAL_AUTH_GITHUB_SECRET = 'b7ebe0a95e4638a1a1a094a3cbea8d5a1cdd1ba1'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '608665104642-t56mntp9qv0gdnn39upp7fvg527n4kij.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '-UwFtR8jivDFrWqKs1_ZjbJ9'
+
+LOGIN_REDIRECT_URL = '/settings/'
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^songs/(?P<filter_by>[a-zA_Z]+)/$', views.songs, name='songs'),
     url(r'^create_album/$', views.create_album, name='create_album'),
     url(r'^settings/$', views.settings, name='settings'),
+    url(r'^viewall/$', views.viewall, name='viewall'),
     url(r'^api/v1/', include('social_django.urls', namespace='social')),  # <--
     url(r'^(?P<album_id>[0-9]+)/create_song/$', views.create_song, name='create_song'),
     url(r'^(?P<album_id>[0-9]+)/delete_song/(?P<song_id>[0-9]+)/$', views.delete_song, name='delete_song'),

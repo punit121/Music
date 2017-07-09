@@ -237,3 +237,13 @@ def songs(request, filter_by):
             'song_list': users_songs,
             'filter_by': filter_by,
         })
+
+def viewall(request):
+    if not request.user.is_authenticated():
+        return render(request,'music/login.html')
+    else:
+        albums = Album.objects.all()
+        return render(request, 'music/viewall.html', {'albums':albums})
+
+
+                    
